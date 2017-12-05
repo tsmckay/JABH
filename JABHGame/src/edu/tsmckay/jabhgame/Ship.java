@@ -1,3 +1,4 @@
+package edu.tsmckay.jabhgame;
 
 public class Ship {
 	
@@ -6,30 +7,27 @@ public class Ship {
 
 //constructors
 
-	Ship(int h) {				//constructor for ship w/out weapon
+	public Ship(int h, Weapon w) {
 		int shipHealth=h;
-	}
-	
-	Ship(int h, weapon w){		//overloaded constructor for ship w/ weapon
-		int shipHealth=h;
-		weapon shipWeapon=w;
+		Weapon shipWeapon=w;
 	}
 	
 	
 //accessors
 	
-	public void getHealth() {
+	public int getHealth() {
 		return shipHealth;
 	}
 	
-	public void getWeapon() {
+	public Weapon getWeapon() {
 		return shipWeapon;
 	}
 	
 //other methods
 	
-	public int dealDamage() {														//deals normal damage or 1.5x damage with a probability of critChance
-		if (Math.random()<critChance) return 1.5*shipWeapon.getDamage();
+	public double dealDamage() {	//deals normal damage or 1.5x damage with a probability of critChance
+		if (Math.random()<shipWeapon.getCritChance())
+			return 1.5*shipWeapon.getDamage();
 		return shipWeapon.getDamage();
 	}
 	
