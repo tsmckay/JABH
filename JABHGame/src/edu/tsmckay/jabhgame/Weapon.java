@@ -34,7 +34,7 @@ public class Weapon {
 		return critChance;
 	}
 	
-//other methods
+//other methods [test edit]
 
 	public void reload(){; 						//sets current ammunition back to full
 		currentAmmo=maxAmmo;
