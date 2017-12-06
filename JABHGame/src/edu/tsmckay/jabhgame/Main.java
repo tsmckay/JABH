@@ -18,7 +18,6 @@ public class Main extends JFrame{
 		window.setResizable(false);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
-		
-		Rectangle r1 = new Rectangle(500,500,300,500);
+
 	}
 }
