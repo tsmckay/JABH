@@ -4,6 +4,7 @@ public class Ship {
 	
 	public int shipHealth;
 	public Weapon shipWeapon;
+	public drawComponent drawShip;
 
 //constructors
 
