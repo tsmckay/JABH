@@ -1,4 +1,4 @@
-# JABH
+# JABH - Just Another Bullet Hell
 AP CompSci Final Project
 
 Semester One Final for AP Computer Science
