@@ -1,28 +1,27 @@
 package edu.tsmckay.jabhgame;
+import java.awt.Rectangle;
 
-public class Enemy {
+//////////////////////////////////////////////////////////
+
+public class Enemy
+{
 	
-	//class definition
 	public int enemyHealth;
 	public Weapon enemyWeapon;
-	public drawComponent drawEnemy;
 	
-	//constructor
-	public Enemy(int h, Weapon w, int s) {		//create ship with health "h" and weapon "w"
+
+	public Enemy(int h, Weapon w, int s)
+	{
 		enemyHealth=h; enemyWeapon=w;
-		
-		//set size of enemy based on int s (scale from 1-10)
-		int defaultX=0; int defaultY=0;
-		s=s%10;
-		enemyRect = new Rectangle(10*s, 10*s, x, y);
 	}
 	
-	//accessors
-	public int getHealth() {	//return health
+	public int getHealth()
+	{
 		return enemyHealth;
 	}
 	
-	public Weapon getWeapon() {		//return weapon. not sure if useful
+	public Weapon getWeapon()
+	{
 		return enemyWeapon;
 	}
 	

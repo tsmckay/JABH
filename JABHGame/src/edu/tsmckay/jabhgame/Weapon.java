@@ -1,47 +1,54 @@
 package edu.tsmckay.jabhgame;
 
-public class Weapon {
+///////////////////////////////////////////////
+
+public class Weapon
+{
 	public int currentAmmo;
 	public int maxAmmo;
-	public int damage; //damage dealt to other units
-	public int fireRate; //time in milliseconds between shots
+	public int damage;
+	public int fireRate;
 	public double critChance;
 
-//constructor
 
-	public Weapon(int a, int d, int f){
+	public Weapon(int a, int d, int f)
+	{
 		maxAmmo=a;
-		currentAmmo=a; //max ammo and current ammo are both set to the same integer initially
+		currentAmmo=a;
 		damage=d;
 		fireRate=f; 
-		critChance=(Math.random())%(.2); } //generates a random critical chance from 0-.2
+		critChance=(Math.random())%(.2); 
+	}
 	
-//accessor methods
 	
-	public int getAmmo(){
+	public int getAmmo()
+	{
 		return currentAmmo;
 	}
 	
-	public int getDamage(){
+	public int getDamage()
+	{
 		return (damage);
 	}
 	
-	public int getFireRate(){
+	public int getFireRate()
+	{
 		return fireRate;
 	}
 	
-	public double getCritChance() {
+	public double getCritChance()
+	{
 		return critChance;
 	}
 	
-//other methods
 
-	public void reload(){; 						//sets current ammunition back to full
+	public void reload()
+	{
 		currentAmmo=maxAmmo;
-		//some sort of delay based on fire rate
 	}
 	
-	public void setCurrentAmmo(int a) {			//sets ammo of weapon to int a (does not change max ammo)
+	public void setCurrentAmmo(int a)
+	{
 		currentAmmo=a;
 	}
 }
