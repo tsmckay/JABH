@@ -22,11 +22,18 @@ public class Player extends GameObject
 
 	public void tick()
 	{
-		x += velX;
-		y += velY;	//responsible for moving object
+		x = (x+velX)%Game.WIDTH;
+		y = (y+velY)%Game.HEIGHT;	//responsible for moving object
 		
-		x = Game.clamp(x, 0, Game.WIDTH-38);
-		y = Game.clamp(y, 0, Game.HEIGHT-61);
+		if (x < 0)
+		{
+			x+=Game.WIDTH;
+		}
+		
+		if (y < 0)
+		{
+			y+=Game.HEIGHT;
+		}
 		
 		collision();
 	}
@@ -40,13 +47,17 @@ public class Player extends GameObject
 			{
 				if (getBounds().intersects( tempObject.getBounds() ) )
 				{
-					HUD.HEALTH-=3;
+					HUD.HEALTH-=20;
+					handler.removeObject(tempObject);
 				}
 			}
 		}
 	}
 	
-	public void fireProjectile() {}
+	public void fireProjectile()
+	{
+		handler.addObject( new Projectile(x, y, ID.Projectile, -10, Color.white, -5));
+	}
 	
 
 	public void render(Graphics g)

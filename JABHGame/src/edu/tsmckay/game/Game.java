@@ -95,6 +95,11 @@ public class Game extends Canvas implements Runnable{
 	{
 		handler.tick();
 		hud.tick();
+		
+		if (HUD.HEALTH == 0)
+		{
+			System.exit(1);
+		}
 	}
 	
 	private void render()

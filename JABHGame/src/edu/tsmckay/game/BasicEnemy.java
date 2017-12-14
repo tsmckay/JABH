@@ -24,7 +24,23 @@ public class BasicEnemy extends GameObject
 	
 	public void fireProjectile()
 	{
-		handler.addObject( new Projectile(x, y, ID.Projectile));
+		handler.addObject( new Projectile(x, y, ID.Projectile, 5, Color.red, 25));
+	}
+	
+	private void collision()
+	{
+		for (int i = 0; i < handler.object.size(); i++)
+		{
+			GameObject tempObject = handler.object.get(i);
+			if (tempObject.getId() == ID.Projectile)
+			{
+				if (getBounds().intersects( tempObject.getBounds() ) )
+				{
+					setY(Game.HEIGHT+200);
+					handler.removeObject(tempObject);
+				}
+			}
+		}
 	}
 
 	public void tick()
@@ -34,6 +50,8 @@ public class BasicEnemy extends GameObject
 		
 		if (y <= 0 || y >= Game.HEIGHT-32) velY *= -1;
 		if (x <= 0 || x >= Game.WIDTH-16) velX *= -1;
+		
+		collision();
 	}
 
 	public void render(Graphics g)

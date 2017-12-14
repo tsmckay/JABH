@@ -6,12 +6,15 @@ import java.awt.Rectangle;
 
 public class Projectile extends GameObject
 {
-
-	public Projectile(int x, int y, ID id)
+	Color color;
+	int offset;
+	String type;
+	public Projectile(int x, int y, ID id, int vel, Color c, int offset)
 	{
-		super(x, y, id);
+		super(x, y+offset, id);
 		
-		velY = 10;
+		velY = vel;
+		color = c;
 	}
 	
 	public Rectangle getBounds()
@@ -25,11 +28,11 @@ public class Projectile extends GameObject
 		y += velY;
 	}
 	
-	public void fireProjectile() {}
+	public void fireProjectile() {} //useless method
 	
 	public void render(Graphics g)
 	{
-		g.setColor(Color.red);
+		g.setColor(color);
 		g.fillRect(x, y, 5, 5);
 	}
 	

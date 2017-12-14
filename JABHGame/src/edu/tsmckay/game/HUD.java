@@ -11,8 +11,8 @@ public class HUD
 	
 	public void tick()
 	{
-		HEALTH = Game.clamp(HEALTH, 0, 100);
-		SCORE++;
+		HEALTH = Game.clamp(HEALTH, 0, 100); //clamps score to an integer between 0 and 100
+		SCORE++;	//increments score once per tick
 	}
 	
 	public void render(Graphics g)

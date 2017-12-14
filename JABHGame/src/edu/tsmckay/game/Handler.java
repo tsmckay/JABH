@@ -34,11 +34,13 @@ public class Handler
 			tempObject.tick();
 			
 			//removes object if it is out of bounds
-			if (object.get(i).getY() > Game.HEIGHT+20)
+			if (tempObject.getY() > Game.HEIGHT+10)
 			{
 				object.remove(i);
 			}
 		}
+		
+
 		
 		//iterates number of ticks
 		tickNum++;

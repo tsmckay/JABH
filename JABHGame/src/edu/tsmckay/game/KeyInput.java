@@ -28,6 +28,7 @@ public class KeyInput extends KeyAdapter
 				if (key == KeyEvent.VK_S) tempObject.setVelY(5);
 				if (key == KeyEvent.VK_D) tempObject.setVelX(5);
 				if (key == KeyEvent.VK_A) tempObject.setVelX(-5);
+				if (key == KeyEvent.VK_SPACE) tempObject.fireProjectile();
 			}
 		}
 		
