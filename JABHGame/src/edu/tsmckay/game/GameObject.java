@@ -1,6 +1,7 @@
 package edu.tsmckay.game;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 //any and all game objects (players, enemies, etc.)
 

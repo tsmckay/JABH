@@ -28,7 +28,21 @@ public class Game extends Canvas implements Runnable{
 		hud = new HUD();
 		
 		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2+175, ID.Player));
-		handler.addObject(new BasicEnemy(WIDTH/2-32, HEIGHT/2-32, ID.Enemy));
+		for (int i = 0; i < 5; i++)
+		{
+			handler.addObject(new BasicEnemy(20+80*i, 60, ID.Enemy));
+		}
+		
+		for (int i = 0; i < handler.object.size(); i++)
+		{
+			if (handler.object.get(i).getId() == ID.Enemy)
+			{
+				handler.addObject(
+						new Projectile( (handler.object.get(i)).getX(),
+									  	(handler.object.get(i)).getY(),
+									  	ID.Projectile));
+			}
+		}
 		
 	}
 	
@@ -119,8 +133,8 @@ public class Game extends Canvas implements Runnable{
 	
 	public static int clamp(int var, int min, int max)
 	{
-		if (var >= max) return var = max;
-		else if (var <= min) return var = min;
+		if (var >= max) return max;
+		else if (var <= min) return min;
 		else return var;
 	}
 	

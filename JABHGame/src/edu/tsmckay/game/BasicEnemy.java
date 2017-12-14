@@ -9,8 +9,8 @@ public class BasicEnemy extends GameObject
 	{
 		super(x, y, id);
 		
-		velX = (int) (Math.random()*100%5+3);
-		velY = (int) (Math.random()*100%5+3);
+		velX = (int) (Math.random()*100%10+1);
+		velY = 0;
 	}
 
 	public void tick()
