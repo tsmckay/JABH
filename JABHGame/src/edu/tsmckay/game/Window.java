@@ -1,4 +1,4 @@
-package edu.tsmckay.jabhgame.assets;
+package edu.tsmckay.game;
 
 import java.awt.Canvas;
 import java.awt.Dimension;

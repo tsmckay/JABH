@@ -1,8 +1,10 @@
-package edu.tsmckay.jabhgame.assets;
+package edu.tsmckay.game;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Game extends Canvas implements Runnable{
 
@@ -12,11 +14,24 @@ public class Game extends Canvas implements Runnable{
 	
 	private Thread thread;
 	private boolean running = false;
+	private Handler handler;
+	private HUD hud;
 	
 	public Game()
 	{
+		handler = new Handler();
+		
+		this.addKeyListener(new KeyInput(handler));
+		
 		new Window(WIDTH, HEIGHT, "Jack Attack 0.1A", this);
+		
+		hud = new HUD();
+		
+		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2+175, ID.Player));
+		handler.addObject(new BasicEnemy(WIDTH/2-32, HEIGHT/2-32, ID.Enemy));
+		
 	}
+	
 	
 	public synchronized void start()
 	{
@@ -38,10 +53,12 @@ public class Game extends Canvas implements Runnable{
 		}
 	}
 	
-	//game loop
+//start of game loop, sets constant controlled speed
+	
 	public void run()
 	{
-	        long lastTime = System.nanoTime();
+			this.requestFocus();
+	        long lastTime = System.nanoTime();												
 	        double amountOfTicks = 60.0;
 	        double ns = 1000000000 / amountOfTicks;
 	        double delta = 0;
@@ -70,10 +87,13 @@ public class Game extends Canvas implements Runnable{
 	        }
 	                stop();
 	}
+
+//end of game loop
 	
 	private void tick()
 	{
-		
+		handler.tick();
+		hud.tick();
 	}
 	
 	private void render()
@@ -86,11 +106,22 @@ public class Game extends Canvas implements Runnable{
 		}
 		
 		Graphics g = bs.getDrawGraphics();
-		g.setColor(Color.green);
+		g.setColor(Color.black);
 		g.fillRect(0,0, WIDTH, HEIGHT);
+		
+		handler.render(g);
+		
+		hud.render(g);
 		
 		g.dispose();
 		bs.show();
+	}
+	
+	public static int clamp(int var, int min, int max)
+	{
+		if (var >= max) return var = max;
+		else if (var <= min) return var = min;
+		else return var;
 	}
 	
 	public static void main(String[] args)
