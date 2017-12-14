@@ -12,18 +12,19 @@ public abstract class GameObject
 	protected ID id; //identifier for GameObject
 	protected int velX, velY; //velocity in x and y directions
 	
-	public GameObject(int x, int y, ID id)
+	public GameObject(int x, int y, ID id)	//sets location and identifier of game object
 	{
 		this.x = x;
 		this.y = y;
 		this.id = id;
 	}
 	
-	public abstract void tick();
-	public abstract void render(Graphics g);
-	public abstract Rectangle getBounds();
-	public abstract void fireProjectile();
-
+	public abstract void tick();	//tick method that all game objects require
+	public abstract void render(Graphics g);	//rendering method that all game objects require
+	public abstract Rectangle getBounds();	//returns object bounds, useful for collision
+	public abstract void fireProjectile();	//fires projectile from object
+	public abstract boolean fromPlayer();
+	public abstract int getDamage();
 	
 //getter and setter methods
 	

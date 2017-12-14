@@ -15,8 +15,8 @@ public class Game extends Canvas implements Runnable{
 	private boolean running = false;
 	private Handler handler;
 	private HUD hud;
-	private int waveIndex = 1;			//starts at wave 1 with 2 enemies
-	int numberOfEnemies = 0;
+	private Spawn spawner;
+	public static int score = 0;
 	
 	public Game()
 	{
@@ -29,8 +29,15 @@ public class Game extends Canvas implements Runnable{
 		//create new instance of HUD class
 		hud = new HUD();
 		
+		spawner = new Spawn(handler, hud);
+		
 		//spawn player at the bottom of the screen
 		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2+175, ID.Player, handler));
+	}
+	
+	public static int getScore()
+	{
+		return score;
 	}
 	
 	public void spawnEnemies(int num)	//this method spawns a number of enemies designated by int num
@@ -50,7 +57,7 @@ public class Game extends Canvas implements Runnable{
 	
 	public synchronized void stop()		//stops thread
 	{
-		try
+		try		//try catch exception handler
 		{
 			thread.join();
 			running = false;
@@ -108,27 +115,12 @@ public class Game extends Canvas implements Runnable{
 	{
 		handler.tick();	//updates game objects
 		hud.tick();	//updates HUD
+		spawner.tick();
 		
 		if (HUD.HEALTH == 0)
 		{
-			System.exit(1); //close game if health of the player is zero
+		 //do something when health reaches zero
 		}
-		
-		//counts number of enemies
-		for (int i =0; i < handler.object.size(); i++)
-		{
-			if (handler.object.get(i).getId() == ID.Enemy) numberOfEnemies++;
-		}
-		
-		//spawns next wave  if all enemies are gone
-		if (numberOfEnemies == 0)
-			{
-			waveIndex++;	//increments wave number
-			spawnEnemies(waveIndex);	//spawns enemies
-			}
-		
-		//ensures number of enemies does not compound
-		numberOfEnemies = 0;
 	}
 	
 	//renders objects to screen

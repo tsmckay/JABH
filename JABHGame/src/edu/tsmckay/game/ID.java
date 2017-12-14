@@ -1,10 +1,10 @@
 package edu.tsmckay.game;
 
-public enum ID
+public enum ID //new enumeration for all game object IDs
 {
-
+	//allows game to ID whether a GameObject is a player, projectile, or enemy
 	Player(),
 	Projectile(),
-	Enemy();	//allows game to ID whether a GameObject is a player, projectile, or enemy
-	
+	Trail(),
+	Enemy();
 }
