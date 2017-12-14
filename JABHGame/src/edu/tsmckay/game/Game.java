@@ -26,10 +26,11 @@ public class Game extends Canvas implements Runnable{
 		
 		new Window(WIDTH, HEIGHT, "Jack Attack by Trevor McKay", this);
 		
-		hud = new HUD();	//create new instance of HUD class
-
-		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2+175, ID.Player, handler));
+		//create new instance of HUD class
+		hud = new HUD();
+		
 		//spawn player at the bottom of the screen
+		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2+175, ID.Player, handler));
 	}
 	
 	public void spawnEnemies(int num)	//this method spawns a number of enemies designated by int num
