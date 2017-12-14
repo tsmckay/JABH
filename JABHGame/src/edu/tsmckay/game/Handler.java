@@ -9,25 +9,51 @@ import java.util.LinkedList;
 
 public class Handler 
 {
-
+	
+	//creates a list of objects
 	LinkedList<GameObject> object = new LinkedList<GameObject>();
+	
+	//starts number of ticks at zero
+	int tickNum = 0;
 	
 	public void tick()
 	{
-		for (int i = 0; i <object.size(); i++)	//loops through all game objects
+		//loops through all game objects
+		for (int i = 0; i <object.size(); i++)
 		{
-			GameObject tempObject = object.get(i); //sets working object to the #i object in list
+			//sets working object to the #i object in list
+			GameObject tempObject = object.get(i);
 			
+			//randomly fires projectiles from enemy objects
+			if (tickNum % (int)(Math.random()*200+1) == 0 && tempObject.getId() == ID.Enemy && Math.random() < .8)
+			{
+				tempObject.fireProjectile();
+			}
+			
+			//ticks object i
 			tempObject.tick();
+			
+			//removes object if it is out of bounds
+			if (object.get(i).getY() > Game.HEIGHT+20)
+			{
+				object.remove(i);
+			}
 		}
+		
+		//iterates number of ticks
+		tickNum++;
+		
 	}
 	
 	public void render(Graphics g)
 	{
+		//loops through all objects
 		for (int i = 0; i <object.size(); i++)
 		{
-			GameObject tempObject = object.get(i); //sets working object to the #i object in list
-
+			//sets working object to the #i object in list
+			GameObject tempObject = object.get(i);
+			
+			//renders object i
 			tempObject.render(g);
 		}
 	}
@@ -42,6 +68,11 @@ public class Handler
 	public void removeObject(GameObject object)
 	{
 		this.object.remove(object);
+	}
+	
+	public int getTickNum()
+	{
+		return tickNum;
 	}
 	
 }

@@ -2,6 +2,7 @@ package edu.tsmckay.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class Projectile extends GameObject
 {
@@ -12,12 +13,19 @@ public class Projectile extends GameObject
 		
 		velY = 10;
 	}
+	
+	public Rectangle getBounds()
+	{
+		return new Rectangle(x, y, 5, 5);
+	}
 
 	public void tick()
 	{
 		x += velX;
 		y += velY;
 	}
+	
+	public void fireProjectile() {}
 	
 	public void render(Graphics g)
 	{
