@@ -26,7 +26,7 @@ public class BasicEnemy extends GameObject
 	//gets collision bounds
 	public Rectangle getBounds()
 	{
-		return new Rectangle(x, y, 32+5, 16+5);
+		return new Rectangle(x, y, 32+5, 32+5);
 	}
 	
 	//fires red projectile from current enemy location

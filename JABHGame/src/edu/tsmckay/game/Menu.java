@@ -138,7 +138,7 @@ public class Menu extends MouseAdapter
 			g.setColor(Color.WHITE);
 			g.drawString("- click to try again -", 110, 200);
 			g.drawString("Score: " + hud.getScore()/10, 180, 300);
-			g.drawString("Wave: " + hud.getWave(), 180, 350);
+			g.drawString("Wave: " + (hud.getWave()-1), 180, 350);
 		}
 		else if (game.gameState == STATE.Select)
 		{

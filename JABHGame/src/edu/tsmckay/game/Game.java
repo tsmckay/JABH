@@ -7,12 +7,14 @@ import java.awt.image.BufferStrategy;
 
 public class Game extends Canvas implements Runnable{
 
-	private static final long serialVersionUID = 8219088514191419383L;	//serial versionUID
+	private static final long serialVersionUID = 8219088514191419383L;
 	
+	//window and game width/height
 	public static final int WIDTH = 640, 
-							HEIGHT = WIDTH/12*9;	//sets window width and height
+							HEIGHT = WIDTH/12*9;
 	
-	private Thread thread;					//declares thread, handler, and HUD
+	//declares thread, handler, spawner, menu, and HUD
+	private Thread thread;
 	private boolean running = false;
 	private Handler handler;
 	private HUD hud;
@@ -20,41 +22,41 @@ public class Game extends Canvas implements Runnable{
 	private Menu menu;
 	public static boolean paused = false;
 	
+	//starts game in the menu
 	public STATE gameState = STATE.Menu;
 	
 	public Game()
 	{
-		handler = new Handler();	//create new instance of Handler class
+		//create new instance of Handler class
+		handler = new Handler();
 		
 		//create new instance of HUD class
 		hud = new HUD();
 		
+		//creates menu
 		menu = new Menu(this, handler, hud);
 		
-		this.addKeyListener(new KeyInput(handler, this));		//start listening for keyboard input
+		//start listening for keyboard input
+		this.addKeyListener(new KeyInput(handler, this));
 		this.addMouseListener(menu);
 		
+		//imports music and sound
 		AudioPlayer.init();
 		
+		//loops music
 		AudioPlayer.getMusic("music").loop();
 		
+		//creates game window
 		new Window(WIDTH, HEIGHT, "Release 1.0", this);
 		
-		
+		//initializes spawner
 		spawner = new Spawn(handler, hud);
 		
+		//if game is running, spawn the player
 		if (gameState == STATE.Game)
 		{
 			//spawn player at the bottom of the screen
 			handler.addObject(new Player(WIDTH/2-32, HEIGHT/2+175, ID.Player, handler));
-		}
-	}
-	
-	public void spawnEnemies(int num)	//this method spawns a number of enemies designated by int num
-	{
-		for (int i = 0; i < num; i++)
-		{
-			handler.addObject(new BasicEnemy(20+80*i, 60, ID.Enemy, handler));
 		}
 	}
 	
@@ -125,19 +127,25 @@ public class Game extends Canvas implements Runnable{
 	{
 		if (gameState == STATE.Game)
 		{
+			//updates game if it's not paused
 			if (!(paused)) 
 			{
 				handler.tick();	//updates game objects
 				hud.tick();	//updates HUD
-				spawner.tick();
+				spawner.tick(); //updates spawner
+				
+				//checks if health is at 0
 				if (HUD.HEALTH <= 0)
 				{
+					//clears game, resets health, and opens game over screen
 					HUD.HEALTH = 100;
 					handler.object.clear();
 					gameState = STATE.GameOver;
 				}
 			}
 		}
+		
+		//if game is in a menu, only update object handler and menu
 		if (gameState == STATE.GameOver) handler.object.clear();
 		else if (gameState == STATE.Menu || gameState == STATE.GameOver || gameState == STATE.Select)
 		{
@@ -164,6 +172,7 @@ public class Game extends Canvas implements Runnable{
 		//renders game objects
 		handler.render(g);
 		
+		//opens pause menu
 		if(paused)
 		{
 			g.setColor(Color.WHITE);
