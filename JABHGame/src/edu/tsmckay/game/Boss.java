@@ -28,11 +28,13 @@ public class Boss extends GameObject
 		return new Rectangle(x, y, 64, 64);
 	}
 	
+	//fires cyan projectile of size 30
 	public void fireProjectile()
 	{
-		handler.addObject( new Projectile(x, y, ID.Projectile, 4, 30, 20, Color.CYAN, 25, false));
+		handler.addObject( new Projectile(x, y, ID.Projectile, 4, 30, 10, Color.CYAN, 25, false));
 	}
 	
+	//collision method; see BasicEnemy.collision()
 	private void collision()
 	{
 		for (int i = 0; i < handler.object.size(); i++)
@@ -54,21 +56,26 @@ public class Boss extends GameObject
 
 	public void tick()
 	{
+		//adds velocity to location
 		x+=velX;
 		y+=velY;
 		
+		//reverse direction when the enemy hits a wall
 		if (y <= 0 || y >= Game.HEIGHT-32) velY *= -1;
 		if (x <= 0 || x >= Game.WIDTH-16) velX *= -1;
 		
+		//checks for collision
 		collision();
 	}
 
+	//renders boss as a magenta 64x64 square
 	public void render(Graphics g)
 	{
 		g.setColor(Color.MAGENTA);
 		g.fillRect(x, y, 64, 64);
 	}
 
+	//inherited methods
 	public boolean fromPlayer() 
 	{
 		return false;

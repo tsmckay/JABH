@@ -72,17 +72,18 @@ public class Player extends GameObject
 	public void fireProjectile()
 	{
 		//fires a projectile from the player with a color of white and a Y-offset of -5
-		handler.addObject( new Projectile(x+15, y, ID.Projectile, -20, 10, 10, Color.white, -15, true));
+		handler.addObject( new Projectile(x+15, y, ID.Projectile, -20, 10, 10, Color.blue, -15, true));
 	}
 	
 
 	public void render(Graphics g)
 	{
 		//renders player as a green 32x32 square
-		g.setColor(Color.green);
+		g.setColor(Color.red);
 		g.fillRect(x, y, 32, 32);
 	}
 
+	//useless inherited methods
 	public boolean fromPlayer()
 	{
 		return false;

@@ -6,10 +6,18 @@ import java.awt.event.KeyEvent;
 public class KeyInput extends KeyAdapter
 {
 	//creates handler
+	
 	private Handler handler;
+	private boolean[] keyDown = new boolean[4];
 	public KeyInput(Handler handler)
 	{
 		this.handler = handler;
+		
+		keyDown[0]=false; //w
+		keyDown[1]=false; //s
+		keyDown[2]=false; //d
+		keyDown[3]=false; //a
+		
 	}
 	
 	//events on key press
@@ -24,11 +32,12 @@ public class KeyInput extends KeyAdapter
 			GameObject tempObject = handler.object.get(i);
 			if (tempObject.getId() == ID.Player)
 			{
-				if (key == KeyEvent.VK_W) tempObject.setVelY(-5);	//moves player up on W
-				if (key == KeyEvent.VK_S) tempObject.setVelY(5);	//moves player down on S
-				if (key == KeyEvent.VK_D) tempObject.setVelX(5);	//moves player right on D
-				if (key == KeyEvent.VK_A) tempObject.setVelX(-5);	//moves player left on A
-				if (key == KeyEvent.VK_SPACE) tempObject.fireProjectile();	//fires projectile on space bar
+				//sets keyDown to true when key is pressed
+				if (key == KeyEvent.VK_W) { tempObject.setVelY(-5);	keyDown[0] = true; }
+				if (key == KeyEvent.VK_S) { tempObject.setVelY(5); keyDown[1] = true; }
+				if (key == KeyEvent.VK_D) { tempObject.setVelX(5); keyDown[2] = true; }
+				if (key == KeyEvent.VK_A) { tempObject.setVelX(-5); keyDown[3] = true; }
+				if (key == KeyEvent.VK_SPACE) tempObject.fireProjectile();
 			}
 		}
 		
@@ -47,11 +56,15 @@ public class KeyInput extends KeyAdapter
 			GameObject tempObject = handler.object.get(i);
 			if (tempObject.getId() == ID.Player)
 			{
-				//resets velocity to 0 after key is released
-				if (key == KeyEvent.VK_W) tempObject.setVelY(0);
-				if (key == KeyEvent.VK_S) tempObject.setVelY(0);
-				if (key == KeyEvent.VK_D) tempObject.setVelX(0);
-				if (key == KeyEvent.VK_A) tempObject.setVelX(0);
+				//sets keyDown back to false when key is released
+				if (key == KeyEvent.VK_W) keyDown[0] = false;
+				if (key == KeyEvent.VK_S) keyDown[1] = false;
+				if (key == KeyEvent.VK_D) keyDown[2] = false;
+				if (key == KeyEvent.VK_A) keyDown[3] = false;
+				
+				//this fixes choppy movement
+				if (!keyDown[0] && !keyDown[1]) tempObject.setVelY(0);
+				if (!keyDown[2] && !keyDown[3]) tempObject.setVelX(0);
 			}
 		}
 	}
