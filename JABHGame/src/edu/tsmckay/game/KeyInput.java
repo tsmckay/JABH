@@ -9,15 +9,17 @@ public class KeyInput extends KeyAdapter
 	
 	private Handler handler;
 	private boolean[] keyDown = new boolean[4];
-	public KeyInput(Handler handler)
+	Game game;
+	
+	public KeyInput(Handler handler, Game game)
 	{
 		this.handler = handler;
+		this.game = game;
 		
 		keyDown[0]=false; //w
 		keyDown[1]=false; //s
 		keyDown[2]=false; //d
 		keyDown[3]=false; //a
-		
 	}
 	
 	//events on key press
@@ -41,7 +43,13 @@ public class KeyInput extends KeyAdapter
 			}
 		}
 		
-		if (key == KeyEvent.VK_ESCAPE) System.exit(1); //exits on escape
+		//pauses or unpauses game
+		if (key == KeyEvent.VK_ESCAPE)
+			{
+				if (game.gameState == STATE.Game)
+				if (Game.paused) Game.paused = false;
+				else Game.paused = true;
+			}
 	}
 	
 	//events on key release

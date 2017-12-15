@@ -1,14 +1,15 @@
 package edu.tsmckay.game;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 public class HUD
 {
 	//score starts at -10000 to offset the initial point value awarded from spawning the initial wave
-	public int score = -10000;
+	private int score = -20000;
 	public static int HEALTH = 100;
-	private int wave = 1;
+	private int wave = 0;
 	
 	public void tick()
 	{
@@ -20,7 +21,9 @@ public class HUD
 	{
 		g.setColor(Color.WHITE);
 		//prints score and wave number to screen
-		g.drawString("Score: " + ( score/10 + Game.getScore()), 550, 25);
+		Font fontHUD = new Font("arial", 1, 12);
+		g.setFont(fontHUD);
+		g.drawString("Score: " + ( score/10 ), 550, 25);
 		g.drawString("Wave: " + (wave-1), 552, 45);
 		//background of health bar
 		g.setColor(Color.gray);
@@ -45,7 +48,7 @@ public class HUD
 	public void setWave(int wave) {
 		this.wave = wave;
 	}
-
+	
 	public void setScore(int score) {
 		this.score = score;
 	}

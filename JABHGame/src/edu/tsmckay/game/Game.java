@@ -1,6 +1,7 @@
 package edu.tsmckay.game;
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
@@ -16,28 +17,37 @@ public class Game extends Canvas implements Runnable{
 	private Handler handler;
 	private HUD hud;
 	private Spawn spawner;
-	public static int score = 0;
+	private Menu menu;
+	public static boolean paused = false;
+	
+	public STATE gameState = STATE.Menu;
 	
 	public Game()
 	{
 		handler = new Handler();	//create new instance of Handler class
 		
-		this.addKeyListener(new KeyInput(handler));		//start listening for keyboard input
-		
-		new Window(WIDTH, HEIGHT, "Jack Attack by Trevor McKay", this);
-		
 		//create new instance of HUD class
 		hud = new HUD();
 		
+		menu = new Menu(this, handler, hud);
+		
+		this.addKeyListener(new KeyInput(handler, this));		//start listening for keyboard input
+		this.addMouseListener(menu);
+		
+		AudioPlayer.init();
+		
+		AudioPlayer.getMusic("music").loop();
+		
+		new Window(WIDTH, HEIGHT, "Jack Attack by Trevor McKay", this);
+		
+		
 		spawner = new Spawn(handler, hud);
 		
-		//spawn player at the bottom of the screen
-		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2+175, ID.Player, handler));
-	}
-	
-	public static int getScore()
-	{
-		return score;
+		if (gameState == STATE.Game)
+		{
+			//spawn player at the bottom of the screen
+			handler.addObject(new Player(WIDTH/2-32, HEIGHT/2+175, ID.Player, handler));
+		}
 	}
 	
 	public void spawnEnemies(int num)	//this method spawns a number of enemies designated by int num
@@ -113,13 +123,26 @@ public class Game extends Canvas implements Runnable{
 	//tick method; ran each time the game updates
 	private void tick()
 	{
-		handler.tick();	//updates game objects
-		hud.tick();	//updates HUD
-		spawner.tick();
-		
-		if (HUD.HEALTH == 0)
+		if (gameState == STATE.Game)
 		{
-		 //do something when health reaches zero
+			if (!(paused)) 
+			{
+				handler.tick();	//updates game objects
+				hud.tick();	//updates HUD
+				spawner.tick();
+				if (HUD.HEALTH <= 0)
+				{
+					HUD.HEALTH = 100;
+					handler.object.clear();
+					gameState = STATE.GameOver;
+				}
+			}
+		}
+		if (gameState == STATE.GameOver) handler.object.clear();
+		else if (gameState == STATE.Menu || gameState == STATE.GameOver || gameState == STATE.Select)
+		{
+			handler.tick();
+			menu.tick();
 		}
 	}
 	
@@ -141,8 +164,23 @@ public class Game extends Canvas implements Runnable{
 		//renders game objects
 		handler.render(g);
 		
-		//renders HUD
-		hud.render(g);
+		if(paused)
+		{
+			g.setColor(Color.WHITE);
+			Font fntpause = new Font("arial", 1, 45);
+			g.setFont(fntpause);
+			g.drawString("Paused", 240, 200);
+		}
+		
+		if (gameState == STATE.Game)
+		{
+			//renders HUD
+			hud.render(g);
+		}
+		else if (gameState == STATE.Menu || gameState == STATE.GameOver || gameState == STATE.Select)
+		{
+			menu.render(g);
+		}
 		
 		//flushes graphics
 		g.dispose();
