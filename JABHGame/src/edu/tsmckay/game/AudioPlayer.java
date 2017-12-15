@@ -16,6 +16,8 @@ public class AudioPlayer
 	{
 		try {
 			soundMap.put("select", new Sound("res/select.ogg"));
+			soundMap.put("hurt", new Sound("res/hurt.wav"));
+			soundMap.put("destroy", new Sound("res/destroy.wav"));
 			musicMap.put("music", new Music("res/music.ogg"));
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block

@@ -38,7 +38,7 @@ public class Game extends Canvas implements Runnable{
 		
 		AudioPlayer.getMusic("music").loop();
 		
-		new Window(WIDTH, HEIGHT, "Jack Attack by Trevor McKay", this);
+		new Window(WIDTH, HEIGHT, "Release 1.0", this);
 		
 		
 		spawner = new Spawn(handler, hud);

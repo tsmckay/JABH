@@ -62,6 +62,7 @@ public class Player extends GameObject
 				{
 					//subtracts health from player
 					HUD.HEALTH -= tempObject.getDamage();
+					AudioPlayer.getSound("hurt").play();
 					//removes projectile object
 					handler.removeObject(tempObject);
 				}

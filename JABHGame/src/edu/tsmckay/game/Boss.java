@@ -46,6 +46,7 @@ public class Boss extends GameObject
 				{
 					if (getBounds().intersects( tempObject.getBounds() ) )
 						{
+							AudioPlayer.getSound("destroy").play();
 							handler.removeObject(this);
 							handler.removeObject(tempObject);
 						}

@@ -50,6 +50,7 @@ public class BasicEnemy extends GameObject
 					if (getBounds().intersects( tempObject.getBounds() ) )
 						{
 							//removes enemy and the projectile
+							AudioPlayer.getSound("destroy").play();
 							handler.removeObject(this);
 							handler.removeObject(tempObject);
 						}

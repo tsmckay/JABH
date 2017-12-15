@@ -104,18 +104,25 @@ public class Menu extends MouseAdapter
 		if (game.gameState == STATE.Menu)
 		{
 			Font fnt = new Font("arial", 1, 45);
-			g.setFont(fnt);
+			Font smallfnt = new Font("arial", 1, 25);
+			g.setFont(smallfnt);
 			g.setColor(Color.white);
-			g.drawString("Jack Attack", 340, 140);
+			g.drawString("Red Square", 400, 90+30);
+			g.drawString("Dodges Lots of", 375, 120+30);
+			g.drawString("Blue Squares", 390, 150+30);
+			g.setFont(fnt);
 			g.drawString("Start Game", Game.WIDTH/2 -320+ 24, 150);
 			g.drawString("Exit", Game.WIDTH/2 + 102 -325, 250);
 			
+			Font fntVSmall = new Font ("arial", 1, 15);
+			g.setFont(fntVSmall);
+			g.drawString("a creatively named game by", 80+290, 220+10);
 			Font fntSmall = new Font("arial", 1, 20);
 			g.setFont(fntSmall);
-			g.drawString("Trevor McKay", 80+320, 220);
-			g.drawString("Dean Whiteside", 76+320, 250);
+			g.drawString("Trevor McKay", 80+320, 220+60);
+			g.drawString("Dean Whiteside", 76+320, 250+60);
 			
-			g.fillRect(21+320, 170, 250, 5);
+			g.fillRect(21+320, 170+30, 250, 5);
 			
 			g.setColor(Color.magenta);
 			g.drawRect(Game.WIDTH/2-325, 100, 300, 64);
