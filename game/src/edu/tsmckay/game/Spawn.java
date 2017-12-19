@@ -7,6 +7,8 @@ public class Spawn
 	
 	private Handler handler;
 	private HUD hud;
+	private double enemyScale = .05;
+	private double bossScale = .1;
 	
 	//random seed for object placement
 	private Random r = new Random();
@@ -26,7 +28,7 @@ public class Spawn
 		{
 			for (int i = 0; i < hud.getWave(); i++)
 			{
-				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH)-10, 60, ID.Enemy, handler));
+				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH)-10, 60, enemyScale, ID.Enemy, handler));
 			}
 		}
 		
@@ -35,12 +37,12 @@ public class Spawn
 		{
 			for (int i = 0; i < 5; i++)
 			{
-				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH)-10, 60, ID.Enemy, handler));
+				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH)-10, 60, enemyScale, ID.Enemy, handler));
 			}
 			
 			for (int i = 5; i < hud.getWave(); i++)
 			{
-				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH)-10, 110, ID.Enemy, handler));
+				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH)-10, 110, enemyScale, ID.Enemy, handler));
 			}
 		}
 		
@@ -50,18 +52,18 @@ public class Spawn
 		{
 			for (int i = 0; i < 5; i++)
 			{
-				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH)-10, 60, ID.Enemy, handler));
+				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH)-10, 60, enemyScale, ID.Enemy, handler));
 			}
 			for (int i = 0; i < 5; i++)
 			{
-				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH)-10, 110, ID.Enemy, handler));
+				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH)-10, 110, enemyScale, ID.Enemy, handler));
 			}
 			for (int i = 10; i < 15; i++)
 			{
-				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH)-10, 160, ID.Enemy, handler));
+				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH)-10, 160, enemyScale, ID.Enemy, handler));
 			}
 			
-			handler.addObject(new Boss(r.nextInt(Game.WIDTH)-10, 80, ID.Enemy, handler));	//adds an additional boss
+			handler.addObject(new Boss(r.nextInt(Game.WIDTH)-10, 80, bossScale, ID.Enemy, handler));	//adds an additional boss
 		}
 		
 		//adds one boss every 5 waves
@@ -69,7 +71,7 @@ public class Spawn
 		{
 			for (int i=0; i < hud.getWave()/5; i++)
 			{
-				handler.addObject(new Boss(r.nextInt(Game.WIDTH)-10, 80, ID.Enemy, handler));
+				handler.addObject(new Boss(r.nextInt(Game.WIDTH)-10, 80, bossScale, ID.Enemy, handler));
 			}
 		}
 		

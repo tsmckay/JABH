@@ -14,10 +14,10 @@ public class Projectile extends GameObject
 	public int damage;
 
 	//constructor for projectile
-	public Projectile(int x, int y, ID id, int vel, int size, int damage, Color c, int offset, boolean fromPlayer)
+	public Projectile(int x, int y, double scale, ID id, int vel, int size, int damage, Color c, int offset, boolean fromPlayer)
 	{
 		//adds offset to y coordinate
-		super(x, y + offset, id);
+		super(x, y + offset, scale, id);
 		
 		this.velY = vel;
 		this.color = c;

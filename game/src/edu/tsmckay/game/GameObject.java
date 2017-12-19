@@ -11,12 +11,14 @@ public abstract class GameObject
 	protected int x, y; //accessible by all objects that inherit the GameObject class
 	protected ID id; //identifier for GameObject
 	protected int velX, velY; //velocity in x and y directions
+	protected double scale;
 	
-	public GameObject(int x, int y, ID id)	//sets location and identifier of game object
+	public GameObject(int x, int y, double scale, ID id)	//sets location and identifier of game object
 	{
 		this.x = x;
 		this.y = y;
 		this.id = id;
+		this.scale = scale;
 	}
 	
 	public abstract void tick();	//tick method that all game objects require

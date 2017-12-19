@@ -11,6 +11,7 @@ public class Menu extends MouseAdapter
 	private Game game;
 	private Handler handler;
 	private HUD hud;
+	private double playerScale = .05;
 	
 	public Menu(Game game, Handler handler, HUD hud)
 	{
@@ -64,7 +65,7 @@ public class Menu extends MouseAdapter
 				hud.setWave(1);
 				hud.setScore(-10000);
 				game.gameState = STATE.Game;
-				handler.addObject(new Player(Game.WIDTH/2-32, Game.HEIGHT/2+175, ID.Player, handler));
+				handler.addObject(new Player(Game.WIDTH/2-32, Game.HEIGHT/2+175, playerScale, ID.Player, handler));
 			}
 			
 			if (mouseOver(mx, my, 170, 200, 300, 64))
@@ -74,7 +75,7 @@ public class Menu extends MouseAdapter
 				hud.setWave(10);
 				hud.setScore(-10000);
 				game.gameState = STATE.Game;
-				handler.addObject(new Player(Game.WIDTH/2-32, Game.HEIGHT/2+175, ID.Player, handler));
+				handler.addObject(new Player(Game.WIDTH/2-32, Game.HEIGHT/2+175, playerScale, ID.Player, handler));
 			}
 		}
 	}

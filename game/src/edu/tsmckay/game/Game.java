@@ -50,17 +50,11 @@ public class Game extends Canvas implements Runnable{
 		AudioPlayer.getMusic("music").loop();
 		
 		//creates game window
-		new Window(screenSize, "Release 1.0", this);
+		new Window(screenSize, "CNG 2.0", this);
 		
 		//initializes spawner
 		spawner = new Spawn(handler, hud);
 		
-		//if game is running, spawn the player
-		if (gameState == STATE.Game)
-		{
-			//spawn player at the bottom of the screen
-			handler.addObject(new Player(WIDTH/2-32, HEIGHT/2+175, ID.Player, handler));
-		}
 	}
 	
 	public synchronized void start()	//starts thread
