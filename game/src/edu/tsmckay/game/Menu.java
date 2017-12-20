@@ -5,21 +5,23 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 public class Menu extends MouseAdapter
 {
 	private Game game;
 	private Handler handler;
 	private HUD hud;
+	private Random r = new Random();
 	
 	public Menu(Game game, Handler handler, HUD hud)
 	{
 		this.game = game;
 		this.handler = handler;
 		this.hud = hud;
-		handler.addObject(new MenuEffect(50, 100, ID.MenuEffect, handler));
-		handler.addObject(new MenuEffect(100, 100, ID.MenuEffect, handler));
-		handler.addObject(new MenuEffect(100, 50, ID.MenuEffect, handler));
+		for (int i = 0; i<9; i++){
+			handler.addObject(new MenuEffect(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.MenuEffect, handler));
+		}
 	}
 	
 	public void mousePressed(MouseEvent e)
@@ -29,7 +31,7 @@ public class Menu extends MouseAdapter
 		
 		if (game.gameState == STATE.Menu)
 		{
-			if (mouseOver(mx, my, Game.WIDTH/2-5-320, 100, 300, 64))
+			if (mouseOver(mx, my, Game.WIDTH/2-5-320, 200, 300, 64))
 			{
 				game.gameState = STATE.Select;
 				
@@ -38,7 +40,7 @@ public class Menu extends MouseAdapter
 			}
 			
 			//quit
-			if (mouseOver(mx, my, Game.WIDTH/2-5-320, 200, 300, 64))
+			if (mouseOver(mx, my, Game.WIDTH/2-5-320, 300, 300, 64))
 			{
 				System.exit(1);
 			}
@@ -107,26 +109,26 @@ public class Menu extends MouseAdapter
 			Font smallfnt = new Font("arial", 1, 25);
 			g.setFont(smallfnt);
 			g.setColor(Color.white);
-			g.drawString("Red Square", 400, 90+30);
-			g.drawString("Dodges Lots of", 375, 120+30);
-			g.drawString("Blue Squares", 390, 150+30);
+			g.drawString("Red Square", 800, 220);
+			g.drawString("Dodges Lots of", 775, 250);
+			g.drawString("Blue Squares", 790, 280);
 			g.setFont(fnt);
-			g.drawString("Start Game", Game.WIDTH/2 -320+ 24, 150);
-			g.drawString("Exit", Game.WIDTH/2 + 102 -325, 250);
+			g.drawString("Start Game", Game.WIDTH/2 - 296, 250);
+			g.drawString("Exit", Game.WIDTH/2 - 223, 350);
 			
 			Font fntVSmall = new Font ("arial", 1, 15);
 			g.setFont(fntVSmall);
-			g.drawString("a creatively named game by", 80+290, 220+10);
+			g.drawString("a creatively named game by", 770, 330);
 			Font fntSmall = new Font("arial", 1, 20);
 			g.setFont(fntSmall);
-			g.drawString("Trevor McKay", 80+320, 220+60);
-			g.drawString("Dean Whiteside", 76+320, 250+60);
+			g.drawString("Trevor McKay", 800, 380);
+			g.drawString("Dean Whiteside", 796, 410);
 			
-			g.fillRect(21+320, 170+30, 250, 5);
+			g.fillRect(741, 300, 250, 5);
 			
 			g.setColor(Color.magenta);
-			g.drawRect(Game.WIDTH/2-325, 100, 300, 64);
 			g.drawRect(Game.WIDTH/2-325, 200, 300, 64);
+			g.drawRect(Game.WIDTH/2-325, 300, 300, 64);
 		}
 		
 		else if (game.gameState == STATE.GameOver)

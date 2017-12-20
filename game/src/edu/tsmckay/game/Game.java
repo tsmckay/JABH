@@ -10,8 +10,8 @@ public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 8219088514191419383L;
 	
 	//window and game width/height
-	public static final int WIDTH = 640, 
-							HEIGHT = WIDTH/12*9;
+	public static final int WIDTH = 1280, 
+							HEIGHT = 720;
 	
 	//declares thread, handler, spawner, menu, and HUD
 	private Thread thread;
