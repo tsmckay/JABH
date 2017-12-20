@@ -11,16 +11,16 @@ public class Player extends GameObject
 	Handler handler; //declares a handler
 	
 	//constructor for Player
-	public Player(int x, int y, double scale, ID id, Handler handler)
+	public Player(int x, int y, ID id, Handler handler)
 	{
-		super(x, y, scale, id);
+		super(x, y, id);
 		this.handler = handler;
 	}
 	
 	//returns bounds of player
 	public Rectangle getBounds()
 	{
-		return new Rectangle(x, y, (int)(Game.WIDTH*scale), (int)(Game.WIDTH*scale) );	//returns bounds - 2 to make the collision a bit more forgiving
+		return new Rectangle(x, y, 32-2, 32-2);	//returns bounds - 2 to make the collision a bit more forgiving
 	}
 
 	public void tick()
@@ -73,7 +73,7 @@ public class Player extends GameObject
 	public void fireProjectile()
 	{
 		//fires a projectile from the player with a color of white and a Y-offset of -5
-		handler.addObject( new Projectile(x+15, y, 0, ID.Projectile, -20, 10, 10, Color.blue, -15, true));
+		handler.addObject( new Projectile(x+15, y, ID.Projectile, -20, 10, 10, Color.blue, -15, true));
 	}
 	
 
@@ -81,7 +81,7 @@ public class Player extends GameObject
 	{
 		//renders player as a green 32x32 square
 		g.setColor(Color.red);
-		g.fillRect(x, y, (int)(Game.WIDTH*scale), (int)(Game.WIDTH*scale));
+		g.fillRect(x, y, 32, 32);
 	}
 
 	//useless inherited methods

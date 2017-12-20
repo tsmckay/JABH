@@ -13,9 +13,9 @@ public class BasicEnemy extends GameObject
 	Handler handler;
 	
 	//constructor for enemy
-	public BasicEnemy(int x, int y, double scale, ID id, Handler handler)
+	public BasicEnemy(int x, int y, ID id, Handler handler)
 	{
-		super(x, y, scale, id);
+		super(x, y, id);
 		this.handler = handler;
 		
 		//randomizes x velocity to a value between 1 and 11
@@ -26,13 +26,13 @@ public class BasicEnemy extends GameObject
 	//gets collision bounds
 	public Rectangle getBounds()
 	{
-		return new Rectangle(x, y, (int)(Game.WIDTH*scale), (int)(Game.WIDTH*scale));
+		return new Rectangle(x, y, 32+5, 32+5);
 	}
 	
 	//fires red projectile from current enemy location
 	public void fireProjectile()
 	{
-		handler.addObject( new Projectile(x, y, 0, ID.Projectile, 5, 5, 5, Color.red, 25, false));
+		handler.addObject( new Projectile(x, y, ID.Projectile, 5, 5, 5, Color.red, 25, false));
 	}
 	
 	//tests for collision with projectiles
@@ -77,7 +77,7 @@ public class BasicEnemy extends GameObject
 	public void render(Graphics g)
 	{
 		g.setColor(Color.blue);
-		g.fillRect(x, y, (int)(Game.WIDTH*scale), (int)(Game.WIDTH*scale));
+		g.fillRect(x, y, 32, 32);
 	}
 
 	//useless inherited methods

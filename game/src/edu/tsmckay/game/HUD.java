@@ -21,16 +21,16 @@ public class HUD
 	{
 		g.setColor(Color.WHITE);
 		//prints score and wave number to screen
-		Font fontHUD = new Font("arial", 1, 30);
+		Font fontHUD = new Font("arial", 1, 12);
 		g.setFont(fontHUD);
-		g.drawString("Score: " + ( score/10 ), 1730, 35);
-		g.drawString("Wave: " + (wave-1), 1732, 65);
+		g.drawString("Score: " + ( score/10 ), 550, 25);
+		g.drawString("Wave: " + (wave-1), 552, 45);
 		//background of health bar
 		g.setColor(Color.gray);
-		g.fillRect(13, 13, 604, 34);
+		g.fillRect(13, 13, 304, 24);
 		//health bar
 		g.setColor(Color.MAGENTA);
-		g.fillRect(15, 15, HEALTH*6, 30);
+		g.fillRect(15, 15, HEALTH*3, 20);
 		//border for player
 		g.fillRect(0, 2*Game.HEIGHT/3-10, Game.WIDTH, 3);
 	}

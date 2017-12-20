@@ -26,7 +26,7 @@ public class MenuEffect extends GameObject
 	//constructor for enemy
 	public MenuEffect(int x, int y, ID id, Handler handler)
 	{
-		super(x, y, .2, id);
+		super(x, y, id);
 		this.handler = handler;
 		
 		//randomizes x velocity to a value between 1 and 11

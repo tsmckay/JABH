@@ -13,9 +13,9 @@ public class Boss extends GameObject
 	Handler handler;
 	
 	//constructor for enemy
-	public Boss(int x, int y, double scale, ID id, Handler handler)
+	public Boss(int x, int y, ID id, Handler handler)
 	{
-		super(x, y, scale, id);
+		super(x, y, id);
 		this.handler = handler;
 		
 		//randomizes x velocity to a value between 1 and 11
@@ -25,13 +25,13 @@ public class Boss extends GameObject
 	
 	public Rectangle getBounds()
 	{
-		return new Rectangle(x, y, (int)(Game.WIDTH*scale), (int)(Game.WIDTH*scale));
+		return new Rectangle(x, y, 64, 64);
 	}
 	
 	//fires cyan projectile of size 30
 	public void fireProjectile()
 	{
-		handler.addObject( new Projectile(x, y, 0, ID.Projectile, 4, 30, 10, Color.CYAN, 25, false));
+		handler.addObject( new Projectile(x, y, ID.Projectile, 4, 30, 10, Color.CYAN, 25, false));
 	}
 	
 	//collision method; see BasicEnemy.collision()
@@ -73,7 +73,7 @@ public class Boss extends GameObject
 	public void render(Graphics g)
 	{
 		g.setColor(Color.MAGENTA);
-		g.fillRect(x, y, (int)(Game.WIDTH*scale), (int)(Game.WIDTH*scale));
+		g.fillRect(x, y, 64, 64);
 	}
 
 	//inherited methods
