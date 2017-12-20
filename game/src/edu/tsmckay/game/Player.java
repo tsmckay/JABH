@@ -9,19 +9,18 @@ public class Player extends GameObject
 {
 
 	Handler handler; //declares a handler
-
+	
 	//constructor for Player
 	public Player(int x, int y, double scale, ID id, Handler handler)
 	{
 		super(x, y, scale, id);
 		this.handler = handler;
 	}
-
+	
 	//returns bounds of player
 	public Rectangle getBounds()
 	{
-		return new Rectangle(x, y,
-												(int)(Game.WIDTH*scale), (int)(Game.WIDTH*scale));
+		return new Rectangle(x, y, (int)(Game.WIDTH*scale), (int)(Game.WIDTH*scale) );	//returns bounds - 2 to make the collision a bit more forgiving
 	}
 
 	public void tick()
@@ -30,22 +29,22 @@ public class Player extends GameObject
 		//modulus operator allows the player to wrap around the screen in the positive X and Y direction
 		x = (x+velX)%Game.WIDTH;
 		y = Game.clamp(y+velY, 2*Game.HEIGHT/3, Game.HEIGHT-64);
-
+		
 		//these statements allow the player to wrap around the screen in the  X and Y direction
 		if (x < 0)
 		{
 			x+=Game.WIDTH;
 		}
-
+		
 		if (y < 0)
 		{
 			y+=Game.HEIGHT;
 		}
-
+		
 		collision();	//runs collision method
-
+		
 	}
-
+	
 
 	//collision method
 	private void collision()
@@ -70,15 +69,13 @@ public class Player extends GameObject
 			}
 		}
 	}
-
+	
 	public void fireProjectile()
 	{
 		//fires a projectile from the player with a color of white and a Y-offset of -5
-		handler.addObject( new Projectile(
-											 x+15, y, 0, ID.Projectile,
-											 -20, 10, 10, Color.blue, -15, true));
+		handler.addObject( new Projectile(x+15, y, 0, ID.Projectile, -20, 10, 10, Color.blue, -15, true));
 	}
-
+	
 
 	public void render(Graphics g)
 	{

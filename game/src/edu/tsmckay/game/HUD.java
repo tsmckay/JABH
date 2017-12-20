@@ -6,19 +6,17 @@ import java.awt.Graphics;
 
 public class HUD
 {
-	/*score starts at -10000 to offset the initial
-	point value awarded from spawning the initial wave*/
+	//score starts at -10000 to offset the initial point value awarded from spawning the initial wave
 	private int score = -20000;
 	public static int HEALTH = 100;
 	private int wave = 0;
-
+	
 	public void tick()
 	{
-		HEALTH = Game.clamp(HEALTH, 0, 100);
-		//clamps health to an integer between 0 and 100
+		HEALTH = Game.clamp(HEALTH, 0, 100); //clamps health to an integer between 0 and 100
 		score++; //increments score once per tick
 	}
-
+	
 	public void render(Graphics g)
 	{
 		g.setColor(Color.WHITE);
@@ -37,7 +35,7 @@ public class HUD
 		g.fillRect(0, 2*Game.HEIGHT/3-10, Game.WIDTH, 3);
 	}
 
-
+	
 	//getter and setter methods
 	public int getScore() {
 		return score;
@@ -50,7 +48,7 @@ public class HUD
 	public void setWave(int wave) {
 		this.wave = wave;
 	}
-
+	
 	public void setScore(int score) {
 		this.score = score;
 	}

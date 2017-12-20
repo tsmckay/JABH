@@ -8,35 +8,32 @@ public class Boss extends GameObject
 {
 	//counts ticks, used to fire projectiles at semi-random intervals
 	int tickNum = 0;
-
+	
 	//new handler
 	Handler handler;
-
+	
 	//constructor for enemy
 	public Boss(int x, int y, double scale, ID id, Handler handler)
 	{
 		super(x, y, scale, id);
 		this.handler = handler;
-
+		
 		//randomizes x velocity to a value between 1 and 11
 		velX = (int) (Math.random()*100%4+1);
 		velY = 0;
 	}
-
+	
 	public Rectangle getBounds()
 	{
-		return new Rectangle(x, y, (int)(Game.WIDTH*scale),
-												(int)(Game.WIDTH*scale));
+		return new Rectangle(x, y, (int)(Game.WIDTH*scale), (int)(Game.WIDTH*scale));
 	}
-
+	
 	//fires cyan projectile of size 30
 	public void fireProjectile()
 	{
-		handler.addObject(new Projectile
-										 (x, y, 0, ID.Projectile,
-										  4, 30, 10, Color.CYAN, 25, false));
+		handler.addObject( new Projectile(x, y, 0, ID.Projectile, 4, 30, 10, Color.CYAN, 25, false));
 	}
-
+	
 	//collision method; see BasicEnemy.collision()
 	private void collision()
 	{
@@ -63,11 +60,11 @@ public class Boss extends GameObject
 		//adds velocity to location
 		x+=velX;
 		y+=velY;
-
+		
 		//reverse direction when the enemy hits a wall
 		if (y <= 0 || y >= Game.HEIGHT-32) velY *= -1;
 		if (x <= 0 || x >= Game.WIDTH-16) velX *= -1;
-
+		
 		//checks for collision
 		collision();
 	}
@@ -80,7 +77,7 @@ public class Boss extends GameObject
 	}
 
 	//inherited methods
-	public boolean fromPlayer()
+	public boolean fromPlayer() 
 	{
 		return false;
 	}
