@@ -1,10 +1,8 @@
 package edu.tsmckay.game;
 import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 
 public class Game extends Canvas implements Runnable{
@@ -12,9 +10,8 @@ public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 8219088514191419383L;
 	
 	//window and game width/height
-	public Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	public static final int WIDTH = 1920,
-							HEIGHT = 1080;
+	public static final int WIDTH = 640, 
+							HEIGHT = WIDTH/12*9;
 	
 	//declares thread, handler, spawner, menu, and HUD
 	private Thread thread;
@@ -50,7 +47,7 @@ public class Game extends Canvas implements Runnable{
 		AudioPlayer.getMusic("music").loop();
 		
 		//creates game window
-		new Window(screenSize, "Release 1.0", this);
+		new Window(WIDTH, HEIGHT, "Release 1.0", this);
 		
 		//initializes spawner
 		spawner = new Spawn(handler, hud);
