@@ -8,33 +8,35 @@ public class BasicEnemy extends GameObject
 {
 	//counts ticks, used to fire projectiles at semi-random intervals
 	int tickNum = 0;
-	
+
 	//new handler
 	Handler handler;
-	
+
 	//constructor for enemy
 	public BasicEnemy(int x, int y, double scale, ID id, Handler handler)
 	{
 		super(x, y, scale, id);
 		this.handler = handler;
-		
+
 		//randomizes x velocity to a value between 1 and 11
 		velX = (int) (Math.random()*100%10+1);
 		velY = 0;
 	}
-	
+
 	//gets collision bounds
 	public Rectangle getBounds()
 	{
-		return new Rectangle(x, y, (int)(Game.WIDTH*scale), (int)(Game.WIDTH*scale));
+		return new Rectangle(x, y, (int)(Game.WIDTH*scale),
+												(int)(Game.WIDTH*scale));
 	}
-	
+
 	//fires red projectile from current enemy location
 	public void fireProjectile()
 	{
-		handler.addObject( new Projectile(x, y, 0, ID.Projectile, 5, 5, 5, Color.red, 25, false));
+		handler.addObject(new Projectile
+										 (x, y, 0, ID.Projectile, 5, 5, 5, Color.red, 25, false));
 	}
-	
+
 	//tests for collision with projectiles
 	//this method is called once per tick
 	private void collision()
@@ -64,11 +66,11 @@ public class BasicEnemy extends GameObject
 		//adds velocities to current location
 		x+=velX;
 		y+=velY;
-		
+
 		//reverses enemies location when it hits a wall
 		if (y <= 0 || y >= Game.HEIGHT-32) velY *= -1;
 		if (x <= 0 || x >= Game.WIDTH-16) velX *= -1;
-		
+
 		//runs collision check
 		collision();
 	}

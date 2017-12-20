@@ -11,17 +11,22 @@ public class Window extends Canvas //new class windows which inherits canvas
 
 	public Window(Dimension size, String title, Game game)
 	{
-		JFrame frame = new JFrame(title);	//creates new frame
-		frame.setPreferredSize(size);	//
-		frame.setMinimumSize(size);		//sets size
-		frame.setMaximumSize(size);	//
+		JFrame frame = new JFrame(title);
+		frame.setPreferredSize(size);
+		frame.setMinimumSize(size);
+		frame.setMaximumSize(size);
 		frame.setUndecorated(true);
-		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//closes program when window is closed
-		frame.setResizable(false);		//prevents resizing
+
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//closes program when window is closed
+		frame.setResizable(false);
+		//prevents resizing
 		frame.setLocationRelativeTo(null);
-		frame.add(game);	//adds game to frame
-		frame.setVisible(true);		//makes windows visible
-		game.start();	//starts game
+		frame.add(game);
+		//adds game to frame
+		frame.setVisible(true);
+		//makes windows visible
+		game.start();
+		//starts game
 	}
 }

@@ -12,7 +12,7 @@ public class Menu extends MouseAdapter
 	private Handler handler;
 	private HUD hud;
 	private double playerScale = .05;
-	
+
 	public Menu(Game game, Handler handler, HUD hud)
 	{
 		this.game = game;
@@ -22,40 +22,40 @@ public class Menu extends MouseAdapter
 		handler.addObject(new MenuEffect(100, 100, ID.MenuEffect, handler));
 		handler.addObject(new MenuEffect(100, 50, ID.MenuEffect, handler));
 	}
-	
+
 	public void mousePressed(MouseEvent e)
 	{
 		int mx = e.getX();
 		int my = e.getY();
-		
+
 		if (game.gameState == STATE.Menu)
 		{
 			if (mouseOver(mx, my, Game.WIDTH/2-5-320, 100, 300, 64))
 			{
 				game.gameState = STATE.Select;
-				
+
 				AudioPlayer.getSound("select").play();
 				return;
 			}
-			
+
 			//quit
 			if (mouseOver(mx, my, Game.WIDTH/2-5-320, 200, 300, 64))
 			{
 				System.exit(1);
 			}
 		}
-		
+
 		if (game.gameState == STATE.GameOver)
 		{
 			if (mouseOver(mx, my, 0, 0, Game.WIDTH, Game.HEIGHT))
 			{
 				game.gameState = STATE.Select;
-				
+
 				AudioPlayer.getSound("select").play();
 				return;
 			}
 		}
-		
+
 		if (game.gameState == STATE.Select)
 		{
 			if (mouseOver(mx, my, 170, 100, 300, 64))
@@ -65,9 +65,11 @@ public class Menu extends MouseAdapter
 				hud.setWave(1);
 				hud.setScore(-10000);
 				game.gameState = STATE.Game;
-				handler.addObject(new Player(Game.WIDTH/2-32, Game.HEIGHT/2+175, playerScale, ID.Player, handler));
+				handler.addObject(new Player(
+													Game.WIDTH/2-32, Game.HEIGHT/2+175,
+													playerScale, ID.Player, handler ) );
 			}
-			
+
 			if (mouseOver(mx, my, 170, 200, 300, 64))
 			{
 				AudioPlayer.getSound("select").play();
@@ -75,16 +77,18 @@ public class Menu extends MouseAdapter
 				hud.setWave(10);
 				hud.setScore(-10000);
 				game.gameState = STATE.Game;
-				handler.addObject(new Player(Game.WIDTH/2-32, Game.HEIGHT/2+175, playerScale, ID.Player, handler));
+				handler.addObject(new Player(
+													Game.WIDTH/2-32, Game.HEIGHT/2+175,
+													playerScale, ID.Player, handler));
 			}
 		}
 	}
-	
+
 	public void mouseReleased(MouseEvent e)
 	{
-		
+
 	}
-	
+
 	private boolean mouseOver(int mx, int my, int x, int y, int w, int h)
 	{
 		if (mx > x && mx < x + w)
@@ -97,10 +101,10 @@ public class Menu extends MouseAdapter
 		}
 		else return false;
 	}
-	
+
 	public void render(Graphics g)
 	{
-		
+
 		//main menu
 		if (game.gameState == STATE.Menu)
 		{
@@ -114,7 +118,7 @@ public class Menu extends MouseAdapter
 			g.setFont(fnt);
 			g.drawString("Start Game", Game.WIDTH/2 -320+ 24, 150);
 			g.drawString("Exit", Game.WIDTH/2 + 102 -325, 250);
-			
+
 			Font fntVSmall = new Font ("arial", 1, 15);
 			g.setFont(fntVSmall);
 			g.drawString("a creatively named game by", 80+290, 220+10);
@@ -122,14 +126,14 @@ public class Menu extends MouseAdapter
 			g.setFont(fntSmall);
 			g.drawString("Trevor McKay", 80+320, 220+60);
 			g.drawString("Dean Whiteside", 76+320, 250+60);
-			
+
 			g.fillRect(21+320, 170+30, 250, 5);
-			
+
 			g.setColor(Color.magenta);
 			g.drawRect(Game.WIDTH/2-325, 100, 300, 64);
 			g.drawRect(Game.WIDTH/2-325, 200, 300, 64);
 		}
-		
+
 		else if (game.gameState == STATE.GameOver)
 		{
 			Font fnt = new Font("arial", 1, 45);
@@ -145,19 +149,19 @@ public class Menu extends MouseAdapter
 		{
 			Font fnt = new Font("arial", 1, 45);
 			g.setFont(fnt);
-			
+
 			g.setColor(Color.magenta);
 			g.drawRect(170, 100, 300, 64);
 			g.drawRect(170, 200, 300, 64);
-			
+
 			g.setColor(Color.white);
 			g.drawString("Wave 1", 245, 150);
 			g.drawString("Wave 10", 235, 250);
 		}
 	}
-	
+
 	public void tick()
 	{
-		
+
 	}
 }
