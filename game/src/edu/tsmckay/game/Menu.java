@@ -7,6 +7,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
 
+/*
+ * This is the main menu when the game is launched
+ * Also responible for rendering the game over and difficulty select screens
+ */
+
 public class Menu extends MouseAdapter
 {
 	private Game game;

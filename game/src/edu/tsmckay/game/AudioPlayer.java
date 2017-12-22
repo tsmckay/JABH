@@ -7,6 +7,13 @@ import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
+/*
+ * This class provides the ability to play music and sounds.
+ * Sound is stored as hashmaps
+ * The audioplayer is initialized using the AudioPlayer.init(); method
+ */
+
+
 public class AudioPlayer
 {
 	public static Map<String, Sound> soundMap = new HashMap<String, Sound>();

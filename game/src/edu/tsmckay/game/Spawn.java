@@ -2,6 +2,11 @@ package edu.tsmckay.game;
 
 import java.util.Random;
 
+/*
+ * This class is responsible for spawning enemies
+ * There is some random generation to ensure each wave is different
+ */
+
 public class Spawn
 {
 	

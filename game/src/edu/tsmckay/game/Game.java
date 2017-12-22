@@ -5,6 +5,21 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+/*
+ * This is the main game class. A lot happens here.
+ * Here is a short rundown of how it works:
+ * The window size is set to final integers representing width and height
+ * The game initializes the basic things it will need
+ * - a new thread
+ * - a boolean representing whether or not the game is running
+ * - and the hud, spawner, menu, key listener, and sound player
+ * The game loop keeps track of time to ensure the game runs at a constant speed
+ * Each loop the game updates the tick and render methods
+ * Inside each master tick and render methods are the tick and render methods for their classes
+ * Some useful methods are also stored here such clamp()
+ * The game starts when the main method initializes a new Game class
+ */
+
 public class Game extends Canvas implements Runnable{
 
 	private static final long serialVersionUID = 8219088514191419383L;

@@ -4,6 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+/*
+ * These are the basic enemies that appear at the top of the screen
+ * They extend the GameObject class
+ */
+
 public class BasicEnemy extends GameObject
 {
 	//counts ticks, used to fire projectiles at semi-random intervals

@@ -3,6 +3,8 @@ package edu.tsmckay.game;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+//listens for key input
+
 public class KeyInput extends KeyAdapter
 {
 	//creates handler

@@ -4,6 +4,10 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 
+/*
+ * This is the JFrame the window creates when the program starts
+ */
+
 public class Window extends Canvas //new class windows which inherits canvas
 {
 	private static final long serialVersionUID = 7083802404550265596L;

@@ -3,9 +3,11 @@ package edu.tsmckay.game;
 import java.awt.Graphics;
 import java.util.LinkedList;
 
-//maintains, updates, and renders all game objects individually
-
-//basically, this runs through each instance of the GameObject class and performs two operations for each one: tick and render
+/*
+ * maintains, updates, and renders all game objects individually
+ * basically, this runs through each instance of the GameObject
+ * class and performs two operations for each one: tick and render
+ */
 
 public class Handler 
 {

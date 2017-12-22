@@ -5,6 +5,11 @@ import java.awt.Graphics;
 
 import java.awt.Rectangle;
 
+/*
+ * This is the player
+ * It moves faster than enemies and has the ability to fire projectiles
+ */
+
 public class Player extends GameObject
 {
 

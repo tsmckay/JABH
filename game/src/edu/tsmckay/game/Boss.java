@@ -4,6 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+/*
+ * These are the bosses that appear every 5 waves
+ * They extend the GameObject class
+ */
+
 public class Boss extends GameObject
 {
 	//counts ticks, used to fire projectiles at semi-random intervals

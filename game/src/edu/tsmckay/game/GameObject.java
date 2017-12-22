@@ -3,7 +3,14 @@ package edu.tsmckay.game;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-//any and all game objects (players, enemies, etc.)
+/*
+ * This class is the building block for all game objects
+ * This includes:
+ *  - enemies
+ *  - players
+ *  - bosses
+ *  - projectiles
+ */
 
 public abstract class GameObject
 {

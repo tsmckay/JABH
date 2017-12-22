@@ -4,6 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+/*
+ * extension of GameObject
+ * These are the projectiles fired from the player and enemies
+ */
+
 public class Projectile extends GameObject
 {
 	//each projectile has a certain color, size, and damage value

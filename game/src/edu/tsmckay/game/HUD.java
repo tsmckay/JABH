@@ -4,6 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
+/*
+ * Draws the health, score, and wave number on top of the game
+ * Also responsible for keeping track of these values
+ */
+
 public class HUD
 {
 	//score starts at -10000 to offset the initial point value awarded from spawning the initial wave
