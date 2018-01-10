@@ -9,12 +9,7 @@ The player takes control of a red square at the bottom of the screen. Enemies sp
 ---
 
 ## Controls
-W - Up,
-A- Left,
-S- Down,
-D - Right,
-Spacebar - Fire projectile,
-Escape - Close game
+W - Up, A- Left, S- Down, D - Right, Spacebar - Fire projectile, Escape - Close game
 
 ---
 
