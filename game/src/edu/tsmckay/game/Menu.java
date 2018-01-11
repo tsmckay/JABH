@@ -12,11 +12,16 @@ import java.util.Random;
  * Also responible for rendering the game over and difficulty select screens
  */
 
+//locations of menu objects are hard-coded and independent of window size
+
 public class Menu extends MouseAdapter
 {
+	//allows game to update while using menu
 	private Game game;
 	private Handler handler;
 	private HUD hud;
+	
+	//used for random placement of menu effects
 	private Random r = new Random();
 	
 	public Menu(Game game, Handler handler, HUD hud)
@@ -24,6 +29,8 @@ public class Menu extends MouseAdapter
 		this.game = game;
 		this.handler = handler;
 		this.hud = hud;
+		
+		//spawns some rectangles that bounce around in the background
 		for (int i = 0; i<9; i++){
 			handler.addObject(new MenuEffect(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.MenuEffect, handler));
 		}
@@ -31,9 +38,11 @@ public class Menu extends MouseAdapter
 	
 	public void mousePressed(MouseEvent e)
 	{
+		//retrieves location of mouse pointer
 		int mx = e.getX();
 		int my = e.getY();
 		
+		//brings player to diff. select if player clicks start
 		if (game.gameState == STATE.Menu)
 		{
 			if (mouseOver(mx, my, Game.WIDTH/2-5-320, 200, 300, 64))
@@ -44,13 +53,14 @@ public class Menu extends MouseAdapter
 				return;
 			}
 			
-			//quit
+			//quits game if player presses quit
 			if (mouseOver(mx, my, Game.WIDTH/2-5-320, 300, 300, 64))
 			{
 				System.exit(1);
 			}
 		}
 		
+		//restarts game if the player clicks on the screen during game over
 		if (game.gameState == STATE.GameOver)
 		{
 			if (mouseOver(mx, my, 0, 0, Game.WIDTH, Game.HEIGHT))
@@ -62,6 +72,7 @@ public class Menu extends MouseAdapter
 			}
 		}
 		
+		//selects difficulty
 		if (game.gameState == STATE.Select)
 		{
 			if (mouseOver(mx, my, 170, 100, 300, 64))
@@ -86,11 +97,7 @@ public class Menu extends MouseAdapter
 		}
 	}
 	
-	public void mouseReleased(MouseEvent e)
-	{
-		
-	}
-	
+	//tests if mouse is over input rectangle
 	private boolean mouseOver(int mx, int my, int x, int y, int w, int h)
 	{
 		if (mx > x && mx < x + w)
@@ -107,7 +114,7 @@ public class Menu extends MouseAdapter
 	public void render(Graphics g)
 	{
 		
-		//main menu
+		//main menu objects
 		if (game.gameState == STATE.Menu)
 		{
 			Font fnt = new Font("arial", 1, 45);
@@ -136,6 +143,7 @@ public class Menu extends MouseAdapter
 			g.drawRect(Game.WIDTH/2-325, 300, 300, 64);
 		}
 		
+		//game over menu objects
 		else if (game.gameState == STATE.GameOver)
 		{
 			Font fnt = new Font("arial", 1, 45);
@@ -147,6 +155,8 @@ public class Menu extends MouseAdapter
 			g.drawString("Score: " + hud.getScore()/10, 180, 300);
 			g.drawString("Wave: " + (hud.getWave()-1), 180, 350);
 		}
+		
+		//select menu objects
 		else if (game.gameState == STATE.Select)
 		{
 			Font fnt = new Font("arial", 1, 45);
@@ -160,10 +170,5 @@ public class Menu extends MouseAdapter
 			g.drawString("Wave 1", 245, 150);
 			g.drawString("Wave 10", 235, 250);
 		}
-	}
-	
-	public void tick()
-	{
-		
 	}
 }

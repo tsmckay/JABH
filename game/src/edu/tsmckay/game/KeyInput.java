@@ -8,9 +8,11 @@ import java.awt.event.KeyEvent;
 public class KeyInput extends KeyAdapter
 {
 	//creates handler
-	
 	private Handler handler;
+	
+	//represents if the key is being pressed (one for each W,A,S,D)
 	private boolean[] keyDown = new boolean[4];
+	
 	Game game;
 	
 	public KeyInput(Handler handler, Game game)

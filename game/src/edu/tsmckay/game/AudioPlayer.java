@@ -16,9 +16,11 @@ import org.newdawn.slick.Sound;
 
 public class AudioPlayer
 {
+	//sound and music maps
 	public static Map<String, Sound> soundMap = new HashMap<String, Sound>();
 	public static Map<String, Music> musicMap = new HashMap<String, Music>();
 	
+	//method for initializing and loading sounds
 	public static void init()
 	{
 		try {
@@ -32,11 +34,13 @@ public class AudioPlayer
 		}
 	}
 
+	//play music
 	public static Music getMusic(String key)
 	{
 		return musicMap.get(key);
 	}
 	
+	//play sound
 	public static Sound getSound(String key)
 	{
 		return soundMap.get(key);

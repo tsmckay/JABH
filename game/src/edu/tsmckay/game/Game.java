@@ -165,7 +165,6 @@ public class Game extends Canvas implements Runnable{
 		else if (gameState == STATE.Menu || gameState == STATE.GameOver || gameState == STATE.Select)
 		{
 			handler.tick();
-			menu.tick();
 		}
 	}
 	
